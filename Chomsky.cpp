@@ -79,7 +79,7 @@ public:
 
    void Resolver() {
       char asociados[terminales.size()];
-      vector<string> solucion, aux_inicio, aux_fin = producciones;
+      vector <string> solucion, aux_inicio, aux_fin = producciones;
       int i = 0;
 
       for (set<char>::iterator it = terminales.begin(); it!=terminales.end()); it++)
@@ -92,8 +92,8 @@ public:
 
 
 
-         for(int i=0; i < .size(); i++) {
-            if(!esReglaChomsky(aux_inicio.at(i)) {
+         for(int i=0; i < aux_inicio.size(); i++) {
+            if(!esReglaChomsky(aux_inicio.at(i))) {
 
                //Introducimos la produccion y flecha
                regla[0] = produciones.at(0)+"->";
