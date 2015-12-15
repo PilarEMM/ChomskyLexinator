@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<vector> 
-#include<string>
+#include <stdio.h>
+#include <vector> 
+#include <string>
 #include <cstdlib>
 #include <ctype>
 
@@ -83,13 +83,12 @@ public:
          aux_fin.clear();
          string regla[2];
 
-         
 
-         for(int i=0; i < .size(); i++) {
+         for(int i=0; i < aux_inicio.size(); i++) {
             if(!esReglaChomsky(aux_inicio.at(i)) {
                
                //Introducimos la produccion y flecha
-               regla[0] = produciones.at(0)+"->";      
+               regla[0] = produciones.at(i).at(0)+"->";      
             
                switch (aux_inicio.at(i).size()) {
                   // case 4: no es posible porque entonces seria de Chomsky o no unitaria
@@ -124,11 +123,16 @@ public:
             }
             else
                solucion.push_back(aux_inicio.at(i));
-      }
+         }
 
-      producciones = solucion + aux_fin;
+         producciones = solucion + aux_fin;
+      }
    }
+
+   friend ostream& operator << (ostream &o,const Chomsky &c);
+
 }
+   
 
 
                
