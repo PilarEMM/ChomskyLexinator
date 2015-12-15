@@ -60,13 +60,13 @@ public:
       bool encontrada = false;
 
       for (char i='A'; i <= 'Z' && !encontrada; i++) {
-         if (!variables.contains(i)) {
+         if (variables.find(i)==variables.end()) {
             nueva = i;
             encontrada = true;
          }
       }
 /*      for (char i='α'; i <= 'ω' && !encontrada; i++) {
-         if (!variables.contains(i)) {
+         if (variables.find(i)==variables.end()) {
             nueva = i;
             encontrada = true;
          }
