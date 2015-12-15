@@ -15,14 +15,19 @@ private:
 
 public:
    void Aniade(const char* termino){
+      char candidato;
+
       producciones.push_back(termino);
 
       int length = sizeof(termino)/sizeof(char);
       for(int i=0; i < length; i++) {
-         if (isupper(termino.at(i))
-            variables.insert(termino.at(i));
-         else if (islower(termino.at(i))
-            terminales.insert(termino.at(i));
+         candidato = *(termino+i);
+
+         if (isupper(candidato))
+            variables.insert(candidato);
+         else if (islower(candidato))
+            terminales.insert(candidato);
+      }
    }
 
    bool esChomsky() {
