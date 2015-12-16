@@ -76,15 +76,11 @@ public:
             encontrada = true;
          }
       }
-/*      for (char i='α'; i <= 'ω' && !encontrada; i++) {
-         if (variables.find(i)==variables.end()) {
-            nueva = i;
-            encontrada = true;
-         }
-      }
-*/
+
+      variables.insert(nueva);
       return nueva;
    }
+
 
    vector<string> Resolver() {
 
