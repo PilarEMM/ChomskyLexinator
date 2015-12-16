@@ -91,13 +91,14 @@ public:
 
    vector<string> Resolver() {
       char asociados[terminales.size()];
-//      string temp;
       vector <string> solucion, aux_fin, aux_inicio = producciones;
 
       solucion.clear();
 
-      for (set<char>::iterator it = terminales.begin(); it!=terminales.end(); it++)
+      for (set<char>::iterator it = terminales.begin(); it!=terminales.end(); it++) {
          asociados[distance(terminales.begin(), it)] = nuevaVariable();
+         solucion.push_back(asociados[distance(terminales.begin(), it)] + FLECHA + *it);
+      }
 
       while (!esChomsky(aux_inicio)){
          aux_fin.clear();
