@@ -137,14 +137,15 @@ public:
       }
    }
 
+   friend ostream& operator << (ostream &o,const Chomsky &c);
 }
 
-   friend ostream& operator << (ostream &o,const Chomsky &c) {
-      for (int i=0; i < c.producciones.size(); i++){
-         o << c.producciones.at(i) << endl;
-      }
-      return o;
-   }  
+ostream& operator << (ostream &o,const Chomsky &c) {
+   for (int i=0; i < c.producciones.size(); i++){
+      o << c.producciones.at(i) << endl;
+   }
+   return o;
+}  
 
 
 
