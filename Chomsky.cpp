@@ -15,7 +15,13 @@ private:
 
 public:
 
-   friend ostream& operator<< (ostream &o,const Chomsky &c);
+   //friend ostream & operator << (ostream &o,const Chomsky &c);
+   Chomsky(){
+      producciones.clear();
+      variables.clear();
+      terminales.clear();
+   }
+
 
    void Aniade(const char* termino){
       char candidato;
@@ -78,8 +84,8 @@ public:
       return nueva;
    }
 
+   vector<string> Resolver() {
 
-   void Resolver() {
       char asociados[terminales.size()];
       vector <string> solucion, aux_fin, aux_inicio = producciones;
 
@@ -136,14 +142,7 @@ public:
       }
 
       solucion.insert(solucion.end(), aux_inicio.begin(), aux_inicio.end());
-      producciones = solucion;
+      return producciones = solucion;
    }
-}
 
-ostream & operator<<(ostream &o, const Chomsky& c) {
-   o << endl;
-   for (int i = 0; i < c.producciones.size(); i++) {
-      o << c.producciones.at(i) << endl;
-   }
-   return o;
-}
+};
