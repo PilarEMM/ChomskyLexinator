@@ -5,6 +5,8 @@
    Chomsky chomsky;
 %}
 
+%x hayProduccion
+
 Terminal       [a-z]
 Simbolo        [A-Z]
 Produccion     {Simbolo}"->"({Simbolo}|{Terminal})+
@@ -12,7 +14,9 @@ Produccion     {Simbolo}"->"({Simbolo}|{Terminal})+
 %%
                  /*----- Sección de Reglas ----------------*/ 
 
-{Produccion}			{chomsky.Aniade(yytext);}
+{Produccion}			        {chomsky.Aniade(yytext); BEGIN(hayProduccion);}
+<hayProduccion>(.)           {}
+<hayProduccion>(\n)          {BEGIN(INITIAL);}
 
 %%   
                 /*----- Sección de Procedimientos --------*/ 
