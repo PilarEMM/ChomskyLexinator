@@ -42,7 +42,7 @@ public:
    bool esChomsky() {
       bool valido = true;
 
-      for (int i=0; producciones.size(); i++) {
+      for (int i=0; i < producciones.size(); i++) {
          valido = valido && esReglaChomsky(producciones.at(i));
       }
       return valido;
