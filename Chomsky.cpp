@@ -83,7 +83,7 @@ public:
       int i = 0;
 
       for (set<char>::iterator it = terminales.begin(); it!=terminales.end()); it++)
-         asociados[i] = nuevaVariable(terminales[
+         asociados[distance(terminales.begin(), it)] = nuevaVariable();
 
       while (!esChomsky()){
          aux_inicio = aux_fin;
