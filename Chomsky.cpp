@@ -82,7 +82,7 @@ public:
       vector <string> solucion, aux_inicio, aux_fin = producciones;
       int i = 0;
 
-      for (set<char>::iterator it = terminales.begin(); it!=terminales.end()); it++)
+      for (set<char>::iterator it = terminales.begin(); it!=terminales.end(); it++)
          asociados[distance(terminales.begin(), it)] = nuevaVariable();
 
       while (!esChomsky()){
@@ -90,13 +90,11 @@ public:
          aux_fin.clear();
          string regla[2];
 
-
-
          for(int i=0; i < aux_inicio.size(); i++) {
-            if(!esReglaChomsky(aux_inicio.at(i)) {
+            if(!esReglaChomsky(aux_inicio.at(i))) {
                
                //Introducimos la produccion y flecha
-               regla[0] = produciones.at(i).at(0)+"->";      
+               regla[0] = aux_inicio.at(i).at(0)+"->";      
             
                switch (aux_inicio.at(i).size()) {
                   // case 4: no es posible porque entonces seria de Chomsky o no unitaria
