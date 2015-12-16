@@ -104,12 +104,12 @@ public:
                   case 5:
                      //Si el elemento es terminal se transforma
                      if(islower(aux_inicio.at(i).at(3)))
-                        regla[0].push_back(asociados(terminales.find(aux_inicio.at(i).at(3))));
+                        regla[0].push_back(asociados[distance(terminales.begin(), terminales.find(aux_inicio.at(i).at(3)))]);
                      else
                         regla[0].push_back(aux_inicio.at(i).at(3));
 
                      if(islower(aux_inicio.at(i).at(4)))
-                        regla[0].push_back(asociados(terminales.find(aux_inicio.at(i).at(4))));
+                        regla[0].push_back(asociados[distance(terminales.begin(), terminales.find(aux_inicio.at(i).at(4)))]);
                      else
                         regla[0].push_back(aux_inicio.at(i).at(4));
                   break;
@@ -117,7 +117,7 @@ public:
                   default:
                      //Si el primer elemento es terminal se transforma
                      if(islower(aux_inicio.at(i).at(3)))
-                        regla[0].push_back(asociados(terminales.find(aux_inicio.at(i).at(3))));
+                        regla[0].push_back(asociados[distance(terminales.begin(), terminales.find(aux_inicio.at(i).at(3)))]);
                      else
                         regla[0].push_back(aux_inicio.at(i).at(3));
 
