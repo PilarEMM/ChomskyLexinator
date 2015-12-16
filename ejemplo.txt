@@ -1,0 +1,15 @@
+G = (V, T, P, S)
+
+V={S,A,B}
+T={a,b}
+S=S
+
+P
+S->bA
+S->aB
+A->bAA
+A->AS
+A->a
+B->aBB
+B->bS
+B->b
