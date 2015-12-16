@@ -7,6 +7,8 @@
 
 using namespace std;
 
+const string FLECHA = "->";
+
 class Chomsky{
 private:
    vector <string> producciones;
@@ -39,11 +41,11 @@ public:
       }
    }
 
-   bool esChomsky() {
+   bool esChomsky(vector<string> cadena) {
       bool valido = true;
 
-      for (int i=0; i < producciones.size(); i++) {
-         valido = valido && esReglaChomsky(producciones.at(i));
+      for (int i=0; i < cadena.size(); i++) {
+         valido = valido && esReglaChomsky(cadena.at(i));
       }
       return valido;
    }
@@ -100,7 +102,7 @@ public:
             if(!esReglaChomsky(aux_inicio.at(i))) {
                
                //Introducimos la produccion y flecha
-               regla[0] = aux_inicio.at(i).at(0)+"->";      
+               regla[0] = aux_inicio.at(i).at(0)+FLECHA;      
             
                switch (aux_inicio.at(i).size()) {
                   // case 4: no es posible porque entonces seria de Chomsky o no unitaria
