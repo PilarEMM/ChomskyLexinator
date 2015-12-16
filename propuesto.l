@@ -19,7 +19,7 @@ Produccion			{chomsky.Aniade(yytext());}
 
 int main (int argc, char *argv[])
 {   
-   if (argc == 2)   
+   if (argc == 3)   
    {     
       yyin = fopen (argv[1], "rt");     
 
@@ -27,12 +27,13 @@ int main (int argc, char *argv[])
       {       
          printf ("El fichero %s no se puede abrir\n", argv[1]);       
          exit (-1);     
-      }   
+      } 
+      yyout = fopen(argv[2], "w");  
    }   
    else yyin = stdin;   
   
    yylex (); 
-   chomsky.Imprime(/*Acceso al archivo de salida*/);  
+   chomsky.Imprime(argv[2]);  
 
   return 0; 
 }
