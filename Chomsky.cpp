@@ -14,6 +14,9 @@ private:
    set <char> terminales;
 
 public:
+
+   friend ostream & operator << (ostream &o,const Chomsky &c);
+
    void Aniade(const char* termino){
       char candidato;
 
@@ -88,7 +91,7 @@ public:
          aux_fin.clear();
          string regla[2];
 
-         for(int i=0; i < aux_inicio.size(); i++) {+96
+         for(unsigned int i=0; i < aux_inicio.size(); i++) {
             if(!esReglaChomsky(aux_inicio.at(i))) {
                
                //Introducimos la produccion y flecha
@@ -133,13 +136,12 @@ public:
          
       }
 
-      producciones = solucion.insert(solucion.end(), aux_inicio.begin(), aunx_inicio.end());
+      solucion.insert(solucion.end(), aux_inicio.begin(), aux_inicio.end());
+      producciones = solucion;
    }
-
-   friend ostream& operator << (ostream &o,const Chomsky &c);
 }
 
-ostream& operator<< (ostream &o,const Chomsky &c) {
+ostream & operator<<(ostream &o,const Chomsky &c) {
    for (int i=0; i < c.producciones.size(); i++){
       o << c.producciones.at(i) << endl;
    }
