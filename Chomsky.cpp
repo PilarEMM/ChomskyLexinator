@@ -79,18 +79,16 @@ public:
 
    void Resolver() {
       char asociados[terminales.size()];
-      vector <string> solucion, aux_inicio, aux_fin = producciones;
-      int i = 0;
+      vector <string> solucion, aux_fin, aux_inicio = producciones;
 
       for (set<char>::iterator it = terminales.begin(); it!=terminales.end(); it++)
          asociados[distance(terminales.begin(), it)] = nuevaVariable();
 
       while (!esChomsky()){
-         aux_inicio = aux_fin;
          aux_fin.clear();
          string regla[2];
 
-         for(int i=0; i < aux_inicio.size(); i++) {
+         for(int i=0; i < aux_inicio.size(); i++) {+96
             if(!esReglaChomsky(aux_inicio.at(i))) {
                
                //Introducimos la produccion y flecha
@@ -130,9 +128,12 @@ public:
             else
                solucion.push_back(aux_inicio.at(i));
          }
-
-         producciones = solucion + aux_fin;
+      
+         aux_inicio = aux_fin;
+         
       }
+
+      producciones = solucion.insert(solucion.end(), aux_inicio.begin(), aunx_inicio.end());
    }
 
    friend ostream& operator << (ostream &o,const Chomsky &c);
