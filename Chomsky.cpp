@@ -81,7 +81,6 @@ public:
       return nueva;
    }
 
-
    vector<string> Resolver() {
 
       char asociados[terminales.size()];
@@ -90,7 +89,7 @@ public:
       for (set<char>::iterator it = terminales.begin(); it!=terminales.end(); it++)
          asociados[distance(terminales.begin(), it)] = nuevaVariable();
 
-      while (!esChomsky()){
+      while (!esChomsky(aux_inicio.at(i))){
          aux_fin.clear();
          string regla[2];
 
