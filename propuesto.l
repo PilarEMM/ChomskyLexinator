@@ -1,8 +1,8 @@
                  /*----- Sección de Declaraciones --------------*/ 
 %{
 #include "Chomsky.cpp"
-
-Chomsky chomsky;
+#include <iostream>
+   Chomsky chomsky;
 %}
 
 Terminal       [a-z]
@@ -12,14 +12,23 @@ Produccion     {Simbolo}"->"({Simbolo}|{Terminal})+
 %%
                  /*----- Sección de Reglas ----------------*/ 
 
-Produccion			{chomsky.Aniade(yytext());}
+Produccion			{chomsky.Aniade(yytext);}
 
 %%   
                 /*----- Sección de Procedimientos --------*/ 
 
+ostream & operator<<(ostream &o, const vector<string> &c) {
+   for (unsigned int i=0; i < c.size(); i++)
+      o << c.at(i) << "\n";
+
+   return o;
+}
+
 int main (int argc, char *argv[]){
    yyin = stdin;
    yyout = stdout;
+
+
 
    if (argc >= 2){     
       yyin = fopen (argv[1], "rt");     
@@ -40,7 +49,7 @@ int main (int argc, char *argv[]){
    }
   
    yylex (); 
-   chomsky.Imprime(argv[2]);  
+   cout << chomsky.Resolver();  
 
   return 0; 
 }
