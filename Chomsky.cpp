@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<iostream>
 #include <cstdlib>
 #include<vector>
 #include<string>
@@ -6,6 +7,15 @@
 
 
 using namespace std;
+
+const string FLECHA = "->";
+
+ostream & operator<<(ostream &o, const vector<string> &c) {
+   for (unsigned int i=0; i < c.size(); i++)
+      o << c.at(i) << "\n";
+
+   return o;
+}
 
 class Chomsky{
 private:
@@ -15,7 +25,6 @@ private:
 
 public:
 
-   //friend ostream & operator << (ostream &o,const Chomsky &c);
    Chomsky(){
       producciones.clear();
       variables.clear();
@@ -39,11 +48,11 @@ public:
       }
    }
 
-   bool esChomsky() {
+   bool esChomsky(vector<string> cadena) {
       bool valido = true;
 
-      for (int i=0; producciones.size(); i++) {
-         valido = valido && esReglaChomsky(producciones.at(i));
+      for (unsigned int i = 0; i < cadena.size(); i++) {
+         valido = valido && esReglaChomsky(cadena.at(i));
       }
       return valido;
    }
@@ -74,25 +83,23 @@ public:
             encontrada = true;
          }
       }
-/*      for (char i='α'; i <= 'ω' && !encontrada; i++) {
-         if (variables.find(i)==variables.end()) {
-            nueva = i;
-            encontrada = true;
-         }
-      }
-*/
+
+      variables.insert(nueva);
+
       return nueva;
    }
 
    vector<string> Resolver() {
-
       char asociados[terminales.size()];
+//      string temp;
       vector <string> solucion, aux_fin, aux_inicio = producciones;
+
+      solucion.clear();
 
       for (set<char>::iterator it = terminales.begin(); it!=terminales.end(); it++)
          asociados[distance(terminales.begin(), it)] = nuevaVariable();
 
-      while (!esChomsky()){
+      while (!esChomsky(aux_inicio)){
          aux_fin.clear();
          string regla[2];
 
@@ -100,7 +107,7 @@ public:
             if(!esReglaChomsky(aux_inicio.at(i))) {
                
                //Introducimos la produccion y flecha
-               regla[0] = aux_inicio.at(i).at(0)+"->";      
+               regla[0] = aux_inicio.at(i).at(0) + FLECHA;      
             
                switch (aux_inicio.at(i).size()) {
                   // case 4: no es posible porque entonces seria de Chomsky o no unitaria
@@ -127,7 +134,7 @@ public:
 
                      char nueva = nuevaVariable();
                      regla[0].push_back(nueva);
-                     regla[1] = nueva+"->"+aux_inicio.at(i).substr(4);
+                     regla[1] = nueva + FLECHA + aux_inicio.at(i).substr(4);
                      aux_fin.push_back(regla[1]);
                }
 
@@ -138,11 +145,9 @@ public:
          }
       
          aux_inicio = aux_fin;
-         
       }
 
       solucion.insert(solucion.end(), aux_inicio.begin(), aux_inicio.end());
       return producciones = solucion;
    }
-
 };
