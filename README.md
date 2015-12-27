@@ -1,2 +1,2 @@
 # ChomskyLexinator
-Proyecto Lex de @Pilarica para Modelos de Computación(MC)
+Proyecto Lex de @PilarEMM para Modelos de Computación(MC)
